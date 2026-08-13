@@ -1,0 +1,30 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 120
+    environment:
+      flutter: stable
+    scripts:
+      - name: Create Flutter project
+        script: |
+          flutter create card_scanner_app
+          rm -rf card_scanner_app/lib
+          cp -r lib card_scanner_app/
+          cp pubspec.yaml card_scanner_app/pubspec.yaml
+          sed -i '' 's/^name: .*/name: card_scanner_app/' card_scanner_app/pubspec.yaml
+      - name: Add permissions
+        script: |
+          PERMS=$(cat docs/android_manifest_additions.xml)
+          sed -i '' "s|</manifest>|${PERMS}
+</manifest>|" card_scanner_app/android/app/src/main/AndroidManifest.xml
+      - name: Get dependencies
+        script: |
+          cd card_scanner_app
+          flutter pub get
+      - name: Build APK
+        script: |
+          cd card_scanner_app
+          flutter build apk --release
+    artifacts:
+      - card_scanner_app/build/app/outputs/flutter-apk/app-release.apk
