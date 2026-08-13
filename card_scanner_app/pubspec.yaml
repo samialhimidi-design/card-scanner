@@ -1,0 +1,34 @@
+name: card_scanner_app
+description: تطبيق مسح البطاقات (وجهين في صفحة PDF واحدة) عبر طابعة/سكانر شبكي باستخدام بروتوكول eSCL.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- اكتشاف الطابعات على الشبكة المحلية (mDNS / Bonjour) ---
+  multicast_dns: ^0.3.2+6
+
+  # --- الاتصال بالطابعة عبر بروتوكول eSCL (HTTP) ---
+  http: ^1.2.2
+
+  # --- توليد وعرض ومشاركة ملفات PDF ---
+  pdf: ^3.11.1
+  printing: ^5.13.3
+
+  # --- تخزين الملفات محلياً على الجهاز ---
+  path_provider: ^2.1.4
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

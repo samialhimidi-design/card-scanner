@@ -1,0 +1,12 @@
+<!--
+    أضف هذه الأسطر داخل ملف:
+    android/app/src/main/AndroidManifest.xml
+    مباشرة قبل وسم <application ...>
+-->
+
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+<!-- ضرورية لعمل اكتشاف الطابعات عبر mDNS (multicast) -->
+<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
